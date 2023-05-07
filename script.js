@@ -1,6 +1,13 @@
 const eventData = { name: 'New Years Eve', date: '1 Jan 2024' }
-const countsEl = document.querySelectorAll('.count')
-const formatTime = (time) => (time < 10 ? `0${time}` : time)
+
+Array('Days', 'Hours', 'Mins', 'Seconds').forEach(type => {
+	document.querySelector('.container').innerHTML += `
+    <div class="countdown">
+			<p class="count">0</p>
+			<span class="count-type">${type}</span>
+		</div>
+  `
+})
 
 document.getElementById('eventName').innerHTML = eventData.name
 
@@ -15,9 +22,9 @@ function countdown() {
 		floor(totalSeconds) % 60,
 	]
 
-	countsEl.forEach((el, i) => {
+	document.querySelectorAll('.count').forEach((el, i) => {
 		const count = countsData[i]
-		el.innerHTML = i === 0 ? count : formatTime(count)
+		el.innerHTML = i === 0 ? count : count < 10 ? `0${count}` : count
 	})
 }
 
